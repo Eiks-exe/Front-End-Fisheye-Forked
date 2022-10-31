@@ -42,35 +42,36 @@
 // };
 
 // init();
-import { MediaFactory } from "../factories/Media";
-import { PhotographerFactory } from "../factories/photographer";
-import { globalState, initData } from "../utils/data";
+import { MediaFactory } from "../factories/Media.js";
+import { PhotographerFactory, Photographer } from "../factories/photographer.js";
+import { globalState, initData } from "../utils/data.js";
+
+const mediaDB = new MediaFactory()
+const photographers = new PhotographerFactory()
+
+
 
 const main = async () => {
     await initData()
 
-    const mediaDB = new MediaFactory()
-    const photographers = new PhotographerFactory()
-}
 
-const getPhotographer = () => {
-    globalState.photographers.forEach((photographer) => {
-        photographer.id
-        photographer.name
-        photographer.city,
-        photographer.country,
-        photographer.tagline,
-        photographer.price,
-        photographer.portrait
-    })
-    photographers.display()
+    mediaDB.createMedia(globalState.media)
+    
 
+    
     const displayPhotographer = () => {
-        const photographersSection = document.querySelector(".photographer_section");
-        photographers.getUserCardDom(82)
+        globalState.photographers.forEach((photographer) => {
+            const photographersSection = document.querySelector(".photographer_section");
+            const UserCardDom = photographers.getUserCardDom(photographer.id)
+            photographersSection.appendChild(UserCardDom)
+
+        })
+        photographers.display()
     }
-    getPhotographer()
+    photographers.init()
     displayPhotographer()
 }
 
+
 main()
+

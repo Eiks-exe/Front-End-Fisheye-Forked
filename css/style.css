@@ -39,6 +39,20 @@ h1 {
     flex-direction: column;
 }
 
+.photographer_section article a {
+    text-decoration: none;
+    text-align: center;
+    overflow: hidden;
+}
+.photographer_section article:focus-visible {
+    border: 1px solid blue;
+    scale: 2rem;
+}
+.photographer_section article a:focus-visible {
+    border: 1px solid blue;
+}
+
+
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
@@ -47,4 +61,24 @@ h1 {
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.photographer_section article address {
+    font-style: normal;
+    color: #901C1C;
+    font-size: 1.25rem;
+}
+
+.photographer_section article p {
+    color: black;
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.photographer_section article span {
+    color: #525252;
+    font-size: 0.75rem;
 }

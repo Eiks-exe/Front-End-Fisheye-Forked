@@ -1,74 +1,39 @@
-class Video {
-    constructor(
-        id,
-        photographersId,
-        title,
-        video,
-        likes,
-        date,
-        price
-    ){
-        this.id = id
-        this.photographersId = photographersId
-        this.title = title
-        this.video = video
-        this.likes = likes
-        this.date = date
-        this.price = price
-    }
-}
-class Image {
-    constructor(
-        id,
-        photographersId,
-        title,
-        image,
-        likes,
-        date,
-        price
-    ){
-        this.id = id
-        this.photographersId = photographersId
-        this.title = title
-        this.image = image
-        this.likes = likes
-        this.date = date
-        this.price = price
-    }
-}
+import { globalState, initData } from "../utils/data.js"
+initData();
 
 class Media {
     constructor(
-        id,
-        photographersId,
-        title,
-        likes,
-        date,
-        price
+        a
     ){
-        this.id = id
-        this.photographersId = photographersId
-        this.title = title
-        this.likes = likes
-        this.date = date
-        this.price = price
+        this.id = a.id
+        this.photographerId = a.photographerId
+        this.title = a.title
+        this.image = a.image
+        this.video = a.video
+        this.likes = a.likes
+        this.date = a.date
+        this.price = a.price
     }
 }
 export class MediaFactory{
-    createMedia(media){
-        console.log(media, "yo")
-     media.map((item) => {
-        let itemKeys = Object.keys(item)
-        if(itemKeys.includes("video")){
-            console.log("video created id:", item.id)
-            return new Video(item)
-        } else if (itemKeys.includes("image")){
-            console.log("image created id:", item.id)
-            return new Image(item)
-        } else {
-            console.log(item.id)
-            throw new Error("Error! the element isnt a video nor a image")
-        }
-     })
+    db = []
+    async init() {
+        this.createMedia(globalState.media)
+    }
+    /**
+     * 
+     * @param {photographerId} id 
+     * @returns Media[]
+     */
+    get(id){
+        return this.db.filter((item)=>{
+            console.log(item.photographerId == id)
+           return item.photographerId === id
+        })
+    }
+    createMedia(medias){
+        medias.map((item) => {
+            this.db.push(new Media(item))
+        })
     }
 }   

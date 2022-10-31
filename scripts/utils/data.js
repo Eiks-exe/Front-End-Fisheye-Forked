@@ -12,5 +12,4 @@ export const initData =async () => {
     const data = await response.json();
     globalState.media = data.media;
     globalState.photographers = data.photographers;
-    console.log(data)
 }
