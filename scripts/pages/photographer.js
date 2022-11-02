@@ -89,6 +89,8 @@ const displayMedias = (items) => {
     document.getElementById('media_grid').replaceChildren(mediaFrag)
     return totalLikes
 }
+
+
 photographerPage()
 
 

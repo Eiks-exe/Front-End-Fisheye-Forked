@@ -60,25 +60,26 @@ export class PhotographerFactory {
     }
 
     getUserCardDom(id) {
-        const user = this.db.filter((photographer)=>{
-            return photographer.id === id;
-        })[0]
-        const link = document.createElement('a')
-        link.setAttribute("href", `../../photographer.html?id=${user.id}`)
+        const user = this.get(id)[0]
         const picture = `../../assets/photographers/${user.portrait}`;
+        const link = document.createElement('a')
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        img.setAttribute("alt", user.portrait)
         const h2 = document.createElement( 'h2' );
         const country = document.createElement('address');
         const tagline = document.createElement('p')
         const price = document.createElement('span')
+        
+        link.setAttribute("href", `../../photographer.html?id=${user.id}`)
+        
+        img.setAttribute("src", picture)
+        img.setAttribute("alt", user.portrait)
+        
         h2.textContent = user.name;
         country.textContent = `${user.city}, ${user.country}`;
         tagline.textContent = user.tagline;
         price.textContent = `${user.price}€/jour`;
-
+        
         article.appendChild(link)
         link.appendChild(img);
         link.appendChild(h2);
