@@ -1,5 +1,5 @@
 #contact_modal {
-    /* display: none; */
+    display: none;
 }
 
 .photograph-header {
@@ -96,7 +96,7 @@ form textarea {
     margin: auto;
 }
 
-#user_picture{
+#user_picture {
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -147,7 +147,7 @@ form textarea {
     column-gap: 5%;
 }
 
-.media_item{
+.media_item {
     width: 30%;
 }
 
@@ -195,3 +195,152 @@ form textarea {
 
     color: #000000;
 }
+
+#message {
+    border-radius: 5px;
+    max-height: 120px;
+    max-width: 613px;
+}
+
+.select_container {
+    display: flex;
+    align-items: center;
+    margin: 30px 100px;
+    column-gap: 20px;
+}
+
+#select-btn {
+    background-color: #901C1C;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    height: 55px;
+    width: 170px;
+    padding: 0 1rem;
+
+
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: justify;
+}
+
+#select-btn:hover {
+    background-color: #480909;
+}
+
+#select_label {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.select_listbox {
+    position: absolute;
+
+    background-color: #901C1C;
+    width: 170px;
+}
+.listbox-close{
+    display: none;
+}
+.option {
+    padding: 1rem 1rem;
+    font-weight: 700;
+    color: white;
+    font-size: 18px;
+    text-align: justify;
+}
+
+.option:hover {
+    background-color: #480909;
+}
+
+.option_border {
+    border-top:white solid 2px;
+    width: 85%;
+    margin: 0 1rem;
+}
+
+#selected{
+    display: none;
+}
+#arrow_down{
+    float: right;
+    transform: rotate(180deg)
+}
+
+
+#img_container img {
+    width: 90%;
+    height: 70vh;
+    object-fit: cover;
+}
+
+
+#img_container video {
+    width: 90%;
+    height: 70vh;
+    object-fit: cover;
+}
+
+#img_container {
+    position: relative;
+    left: 5%;
+    
+}
+#img_container .title {
+   color: #901C1C;
+    font-size: 24px;
+}
+
+.lightbox_modal{
+    position: relative;
+    background-color: white;
+    width: 50%;
+    margin: 5% auto;
+    padding: 3%;
+    box-shadow: 1px 1px 15px rgb(85, 85, 85);
+    border-radius: 5px;
+}
+
+.lightbox_container{
+    z-index: 1;
+    position:fixed;
+    top: 0%;
+    left: 0%;
+
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.action_container button {
+    position: absolute;
+    color: #901C1C;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.action_container i {
+    font-size: 48px;
+}
+
+#previous{
+    top: 50%;
+    left: 3%;
+}
+
+#next{
+    top: 50%;
+    right: 3%;
+}
+#next i{
+    transform: rotate(180deg);
+}
+#lightbox_close{
+    top: 6%;
+    right:3%;
+    
+    color: #901C1C; 
+}
+
+

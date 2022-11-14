@@ -1,86 +1,115 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <a href="./index.html">
-        <img src="assets/images/logo.png" class="logo" />
-      </a>
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <div class="user_info">
-          <h1 class="user_name" id="user_name"></h1>
-          <p>
-            <address class="user_address" id="user_address">London, Uk</address>
-            <span class="user_tagline" id="user_tagline">Voir le beau dans le quotidien</span>
-          </p>
-        </div>
-        <div class="user_contact">
-          <button type="button" class="contact_button" id="contact_button">Contactez-moi</button>
-        </div>
-        <div class="user_picture">
-          <img src="../../assets/photographers/" alt="user_picture" id="user_picture">
-        </div>
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/93612cedef.js" crossorigin="anonymous"></script>
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header>
+    <a href="./index.html">
+      <img src="assets/images/logo.png" class="logo" />
+    </a>
+  </header>
+  <main id="main">
+    <div class="photograph-header">
+      <div class="user_info">
+        <h1 class="user_name" id="user_name"></h1>
+        <p>
+        <address class="user_address" id="user_address">London, Uk</address>
+        <span class="user_tagline" id="user_tagline">Voir le beau dans le quotidien</span>
+        </p>
       </div>
-      <div class="sort">
-        <p>Trier par</p>
-        <div class="select">
-          <select id="select">
-            <option value="">Popularité</option>
-            <option value="">Date</option>
-            <option value="">Titre</option>
-          </select>
-        </div>
+      <div class="user_contact">
+        <button type="button" class="contact_button" id="contact_button">Contactez-moi</button>
       </div>
-      <div class="media_grid" id="media_grid">
-        <div class="media_item">
-          <img src="./assets/photographers/MimiKeel.jpg" alt="alt" width="300" height="300">
-          <div class="content">
-            <div class="media_name">mimi keel</div>
-            <div class="media_likes">11💖</div>
-          </div>
-        </div>
+      <div class="user_picture">
+        <img src="../../assets/photographers/" alt="user_picture" id="user_picture">
       </div>
-    </main>
-    <div class="stats">
-      <div id="total_likes">297 0810💖</div>
-      <div id="price">300€/jours</div>
     </div>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi Mimi Keel</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input type="text" name="name"/>
-					</div>
-          <div>
-						<label>Nom</label>
-						<input type="text" name="name"/>
-					</div>
-          <div>
-						<label>Email</label>
-						<input type="text" name="name"/>
-					</div>
-          <div>
-						<label>Votre message</label>
-						<textarea></textarea>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+
+    <div class="select_container">
+      <label for="select-btn" id="select_label">Trier par</label>
+      <div class="select-box">
+        <button id="select-btn" type="button">
+          Popularité <i class="fa-solid fa-angle-down" id="arrow_down"></i>
+        </button>
+        <div class="select_listbox listbox-close" id="select_listbox">
+          <div class="option" id="selected">Popularité</div>
+          <div class="option_border"></div>
+          <div class="option">Date</div>
+          <div class="option_border"></div>
+          <div class="option">Titre</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="media_grid" id="media_grid">
+      <div class="media_item">
+        <img src="./assets/photographers/MimiKeel.jpg" alt="alt" width="300" height="300">
+        <div class="content">
+          <div class="media_name">mimi keel</div>
+          <div class="media_likes">11💖</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="stats">
+    <div id="total_likes">297 0810💖</div>
+    <div id="price">300€/jours</div>
+  </div>
+  <div id="contact_modal">
+    <div class="modal">
+      <header>
+        <h2>Contactez-moi Mimi Keel</h2>
+        <img src="assets/icons/close.svg" id="close" />
+      </header>
+      <form id="contact_form">
+        <div>
+          <label>Prénom</label>
+          <input type="text" name="first" id="first" />
+        </div>
+        <div>
+          <label>Nom</label>
+          <input type="text" name="last" id="last" />
+        </div>
+        <div>
+          <label>Email</label>
+          <input type="text" name="email" id="email" />
+        </div>
+        <div>
+          <label>Votre message</label>
+          <textarea name="msg" id="message"></textarea>
+        </div>
+        <button class="contact_button" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </div>
+  <div class="lightbox_container" id="box_container">
+    <div class="lightbox_modal">
+      <div id="img_container">
+        <img src="./assets//images/Animals_Rainbow.jpg" alt="lightbox" id="lightbox_img">
+        <video id="video">
+        </video>
+        <div class="title" id="lb_title">Arc en ciel</div>
+      </div>
+      <div class="action_container">
+        <button type="button" id="previous" tabindex="0"><i class="fa-solid fa-angle-left"></i></button>
+        <button type="button" id="next" tabindex="0"><i class="fa-solid fa-angle-left"></i></button>
+        <button type="btn" tabindex="0" id="lightbox_close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script type="module" src="/scripts/pages/modal.js"></script>
-  </body>
+</body>
+
 </html>

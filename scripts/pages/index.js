@@ -50,7 +50,6 @@ const mediaDB = new MediaFactory()
 const photographers = new PhotographerFactory()
 
 
-
 const main = async () => {
     await initData()
 

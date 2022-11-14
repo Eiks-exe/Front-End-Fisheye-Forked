@@ -62,6 +62,7 @@ export class PhotographerFactory {
     getUserCardDom(id) {
         const user = this.get(id)[0]
         const picture = `../../assets/photographers/${user.portrait}`;
+        
         const link = document.createElement('a')
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
