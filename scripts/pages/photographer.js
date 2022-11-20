@@ -2,9 +2,10 @@ import { MediaFactory } from "../factories/Media.js"
 import { PhotographerFactory } from "../factories/photographer.js"
 import { globalState, initData } from "../utils/data.js"
 import { openLightbox, closeLightbox, next, previous } from "./component/lightbox.js"
+import { sortMediaObjects } from "./component/sortMediaObject.js"
 import { eventLike } from "./events/likes.js"
 
-
+let filteredList = undefined
 
 //Mettre le code JavaScript lié à la page photographer.html
 const navQuery = window.location.search
@@ -37,6 +38,27 @@ const photographerPage = async () => {
     const userMedias = medias.get(parseInt(paramId))
     const totalLikes = displayMedias(userMedias);
     updateUi(user[0], totalLikes);
+
+    // sort
+
+    document.getElementById("select-btn").addEventListener("click", () => {
+        const sltList = document.getElementById("select_listbox")
+        sltList.style.display = sltList.style.display == "none" || !sltList.style.display ? "block" : "none"
+    })
+
+    const sltOptions = document.getElementsByClassName("option")
+    var optionsArr = Array.from(sltOptions)
+    optionsArr.forEach((item) => {
+        item.addEventListener("click", (e) => {
+            const selectButton = document.getElementById("select-btn")
+            selectButton.innerHTML = e.target.innerText + "<i class='fa-solid fa-angle-down' id='arrow_down'></i>"
+            const selected = document.getElementById("selected")
+            selected.removeAttribute("id")
+            e.target.id = "selected"
+            displayMedias(sortMediaObjects(userMedias, e.target.innerText.toLowerCase()))
+        })
+
+    })
 }
 
 const updateUi = (user, totalLikes) => {
@@ -54,22 +76,25 @@ const mediaImgVid = (type, title, filename) => {
     MediaImg.setAttribute("alt", title)
     return MediaImg
 }
-let filteredList
+
+
 const displayMedias = (items) => {
     let totalLikes = 0
     const mediaFrag = document.createDocumentFragment();
-    filteredList = items.map((item, i) => {
+    filteredList = items 
+    console.log(filteredList)
+    items.map((item, i) => {
         const mediaItem = document.createElement("div")
         const content = document.createElement("div")
         const mediaName = document.createElement("div")
         const mediaLikes = document.createElement("div")
         const mediaLink = document.createElement("a")
+        const likeButton = document.createElement("button")
         const likeIcon = document.createElement("i")
 
 
         let mediaImg = undefined
         if (item.image) {
-            console.log(item.image)
             mediaImg = mediaImgVid("img", item.title, item.image)
             mediaLink.setAttribute("href", `../../assets/images/${item.image}`)
             mediaLink.addEventListener("click", (e) => {
@@ -84,16 +109,14 @@ const displayMedias = (items) => {
                 openLightbox(i, `../../assets/images/${item.video}`)
             })
         }
-        
+
         // video hover
 
-        if(item.video){
-            mediaLink.addEventListener(("mouseover"), ()=>{
+        if (item.video) {
+            mediaLink.addEventListener(("mouseover"), () => {
                 hoverVideo()
             })
-            mediaLink.addEventListener(("mouseout"), ()=> {
-                hideVideo()
-            })
+
         }
 
         mediaItem.setAttribute("class", "media_item")
@@ -105,9 +128,15 @@ const displayMedias = (items) => {
         mediaLink.setAttribute("tabindex", "0")
         likeIcon.setAttribute("class", "fa-solid fa-heart")
 
+
+        likeIcon.addEventListener(("click"), () => {
+            mediaLikes.innerHTML = `${item.likes += 1}`
+            mediaLikes.appendChild(likeIcon)
+        })
         mediaName.textContent = item.title
         mediaLikes.innerHTML = `${item.likes}`
         totalLikes += item.likes
+
 
         content.appendChild(mediaName)
         content.appendChild(mediaLikes)
@@ -128,24 +157,17 @@ const displayMedias = (items) => {
 // next&previous
 
 export const getImgById = (id) => {
-    if(filteredList.length > 0) {
-        console.log(filteredList[id])
+    if (id < filteredList.length && id >= 0) {
         if (filteredList[id].image) {
-            return {media: filteredList[id].image, title: filteredList[id].title}
+            return { media: filteredList[id].image, title: filteredList[id].title }
         } else {
-            return {media: filteredList[id].video, title: filteredList[id].title}
+            return { media: filteredList[id].video, title: filteredList[id].title }
         }
     } else {
-        return undefined 
+        return undefined
     }
 }
-window.addEventListener("keydown", (e)=>{
-    if(e.key === "ArrowRight"){
-        next()
-    } else if (e.key === "ArrowLeft"){
-        previous()
-    }
-})
+
 
 document.getElementById("previous").addEventListener("click", () => { previous() })
 document.getElementById("next").addEventListener("click", () => { next() })
@@ -164,20 +186,21 @@ document.getElementById("contact_form").addEventListener("submit", (event) => {
     contact_submit(event)
 })
 
-document.getElementById("select-btn").addEventListener("click", ()=>{
-    document.getElementById("select_listbox").removeAttribute("listbox-close")
-})
+
 
 
 //video
 
-const hoverVideo = ()=>{
-    //TODO: start the video
+const hoverVideo = () => {
+    document.getElementById("video").play()
 }
 
-const hideVideo = ()=> {
-    //TODO: stop the video
+const hideVideo = () => {
+    document.getElementById("video").pause()
+
 }
+
+
 
 eventLike()
 photographerPage()

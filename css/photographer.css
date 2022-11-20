@@ -235,13 +235,11 @@ form textarea {
 
 .select_listbox {
     position: absolute;
-
     background-color: #901C1C;
     width: 170px;
-}
-.listbox-close{
     display: none;
 }
+
 .option {
     padding: 1rem 1rem;
     font-weight: 700;
