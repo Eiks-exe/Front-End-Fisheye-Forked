@@ -36,15 +36,13 @@
     <div class="select_container">
       <label for="select-btn" id="select_label">Trier par</label>
       <div class="select-box">
-        <button id="select-btn" type="button">
+        <button id="select-btn" type="button" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
           Popularité <i class="fa-solid fa-angle-down" id="arrow_down"></i>
         </button>
-        <div class="select_listbox listbox-close" id="select_listbox">
-          <div class="option" id="selected">Popularité</div>
-          <div class="option_border"></div>
-          <div class="option">Date</div>
-          <div class="option_border"></div>
-          <div class="option">Titre</div>
+        <div class="select_listbox listbox-close" id="select_listbox" >
+          <div class="option" id="selected" tabindex="0">Popularité</div>
+          <div class="option" tabindex="0" role="listbox">Date</div>
+          <div class="option" tabindex="0" role="listbox">Titre</div>
 
         </div>
       </div>

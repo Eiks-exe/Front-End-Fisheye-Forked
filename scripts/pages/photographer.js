@@ -40,13 +40,68 @@ const photographerPage = async () => {
     updateUi(user[0], totalLikes);
 
     // sort
+    const slctBtn = document.getElementById("select-btn")
 
     document.getElementById("select-btn").addEventListener("click", () => {
         const sltList = document.getElementById("select_listbox")
+        slctBtn.ariaExpanded = slctBtn.ariaExpanded == "true" || !slctBtn.ariaExpanded ? "false" : "true"
         sltList.style.display = sltList.style.display == "none" || !sltList.style.display ? "block" : "none"
     })
 
+
+    slctBtn.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            slctBtn.ariaExpanded = slctBtn.ariaExpanded == "true" || !slctBtn.ariaExpanded ? "false" : "true"
+        } else if (e.key === "ArrowDown" && slctBtn.ariaExpanded === "true") {
+            const listBox = Array.from(document.getElementsByClassName("option"))
+            for (let index = 0; index < listBox.length; index++) {
+                const element = listBox[index];
+                if (element.id != "selected") {
+                    element.focus()
+                    break;
+                };
+            }
+        }
+    })
+
+    const selectList = document.getElementById("select_listbox")
+    const options = Array.from(selectList.getElementsByClassName("option"))
+    options.forEach((item) => {
+        item.addEventListener("keydown", (e) => {
+            e.preventDefault()
+            switch (e.key) {
+                case "ArrowDown":
+                    console.log("siblingdown")
+                    if (item.nextElementSibling) {
+                        if(item.nextElementSibling.id === "selected" && item.nextElementSibling.nextElementSibling){
+                            item.nextElementSibling.nextElementSibling.focus()
+                        } else {
+                            item.nextElementSibling.focus()
+                        }
+                    } 
+                    break;
+                case "ArrowUp":
+                    if (item.previousElementSibling) {
+                        if(item.previousElementSibling.id === "selected" && item.previousElementSibling.previousElementSibling){
+                            item.previousElementSibling.previousElementSibling.focus()
+                        } else if(!item.previousElementSibling.previousElementSibling) {
+                            slctBtn.focus()
+                        } 
+                        else {
+                            item.previousElementSibling.focus()
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        })
+    })
+
+
     const sltOptions = document.getElementsByClassName("option")
+
+
     var optionsArr = Array.from(sltOptions)
     optionsArr.forEach((item) => {
         item.addEventListener("click", (e) => {
@@ -81,7 +136,7 @@ const mediaImgVid = (type, title, filename) => {
 const displayMedias = (items) => {
     let totalLikes = 0
     const mediaFrag = document.createDocumentFragment();
-    filteredList = items 
+    filteredList = items
     console.log(filteredList)
     items.map((item, i) => {
         const mediaItem = document.createElement("div")
