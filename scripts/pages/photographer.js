@@ -181,11 +181,21 @@ const displayMedias = (items) => {
         mediaLink.setAttribute("title", item.title)
         mediaLink.setAttribute("tabindex", "0")
         likeIcon.setAttribute("class", "fa-solid fa-heart")
-
+        likeIcon.setAttribute("tabindex","0")
 
         likeIcon.addEventListener(("click"), () => {
             mediaLikes.innerHTML = `${item.likes += 1}`
             mediaLikes.appendChild(likeIcon)
+        })
+
+        likeIcon.addEventListener(("keydown"), (e) => {
+            console.log(e)
+            if(e.key === "Enter"){
+                mediaLikes.innerHTML = `${item.likes += 1}`
+                mediaLikes.appendChild(likeIcon)
+                
+            }
+            likeIcon.focus()
         })
         mediaName.textContent = item.title
         mediaLikes.innerHTML = `${item.likes}`
