@@ -144,7 +144,6 @@ const displayMedias = (items) => {
         const mediaName = document.createElement("div")
         const mediaLikes = document.createElement("div")
         const mediaLink = document.createElement("a")
-        const likeButton = document.createElement("button")
         const likeIcon = document.createElement("i")
 
 
